@@ -5,7 +5,7 @@ date: "2023-06-07"
 output: html_document
 ---
 
-# **PROTOCOL** 
+# **PROTOCOL**
 
 **DROUGHT STRESS**
 
@@ -23,7 +23,7 @@ Calculate the **overall water use efficiency** (sum of yields divided by sum of 
 
 ## **MODEL**
 
-The modeling framework SIMPLACE was used to run the crop model Lintul2 together with the soilwater model \"Slim\". Data and solution files were provided by the laboratory instructor. Soil parameters used were for typical sandy loam soil, and weather data id from NUTS2 region AT11 (Burgenland, Austria).
+The modeling framework SIMPLACE was used to run the crop model Lintul2 together with the soilwater model "Slim". Data and solution files were provided by the laboratory instructor. Soil parameters used were for typical sandy loam soil, and weather data id from NUTS2 region AT11 (Burgenland, Austria).
 
 Model is shown in Figure 1.
 
@@ -41,9 +41,9 @@ Figure 1. Waterstress model using Lintul2 and Slim in SIMPLACE framework.
 
 ## **BENCHMARK**
 
-No water stress condition was achieved through running the \'NoWaterStress\' solution. TranRf=1 as shown in Figure 2. Rain and irrigation chart is shown in Figure 3. Volumetric water content is shown in Figure 4. Root depth is shown in Figure 5, while LAI yearly is presented in Figure 6. Figures 7 and 8 show the annual storage biomass and sum of biomass above ground.
+No water stress condition was achieved through running the 'NoWaterStress' solution. TranRf=1 as shown in Figure 2. Rain and irrigation chart is shown in Figure 3. Volumetric water content is shown in Figure 4. Root depth is shown in Figure 5, while LAI yearly is presented in Figure 6. Figures 7 and 8 show the annual storage biomass and sum of biomass above ground.
 
-Notably, the overall sum of biomass for storage organs is \_\_\_\_\_\_\_\_. And taking the 90% of this as our threshold, \_\_\_\_\_\_\_ will be the limiter for rejecting or accepting irrigation schedules from this point on.
+Notably, the overall potential yield without water stress is 8398 g/m2. And taking the 90% of this as our threshold, **7559 g/m2**, will be the limiter for rejecting or accepting irrigation schedules from this point on.
 
 ![](images/nostress_tranrf.png)
 
@@ -84,23 +84,53 @@ Simulations were done by adjusting the following parameters: water amount for ir
 
 Rstudio was used to analyze the data outputs from the simulation runs and automate the process of choosing best settings based on the following parameters:
 
-90% of potential biomass:
+-   90% of potential yield without water stress: **7559 g/m2**
+
+-   least total amount of water used
 
 ### Code
 
-```{r, eval=FALSE}
+For filtering and choosing best setting for uniform irrigation per year:
 
+```{r, eval=FALSE}
+#declare variables (parameters and threshold setting)
+yield_threshold<- 7559
+
+#create empty dataframe
+#read folders from directory, interpret labels as irrigation schedule with varied day1 and day 2 DOY schedule and water amounts, and save into variables (use loop)
+
+
+#save data from yearly biomass csv, column 'yield' into previously created dataframe with header adapted from folder name
+#create new row with summed yields for all years per irrigation setting
+#identify schedules qualifying for threshold set with least water used
+#save dataframe created as csv
+#use plots to show data processed and intersection of yields at 90% and least water used (ggplot)
+#calculate overall water use efficiency (sum of yields/irrigation amount), print
+#save png and csvs generated 
 
 ```
 
 ### Graphs
 
+Figures ... show the ...
+
 ## DECISION AND THEORY
 
 ### On uniform irrigation schedule per year
 
+From the R tool we used,
+
 ### On custom irrigation schedule per year
 
+Based on the previous simulations, the minimum amount of water supplied per year (uniform) is \_\_\_\_\_\_ mm to maintain a sum of **7559 g/m2** yield. From running this setting, we checked the daily data and identified 1994 (June) as a critical year where TranRF is very low (water stress is very high) and fluctuating. Hence, we decided to add more water at this stage. We tested runs on other years and identified we can further lower the input water to \_\_\_\_\_ mm on all the other years since they have sufficient water supply from rain.
+
+Table 1 shows the irrigation schedule and settings we recommend for each year.
+
 ## RECOMMENDATIONS
+
+From conducting the simulations and utilizing the SIMPLACE software with given solution files for drought stress, we wish to put forward the following recommendations for future improvements:
+
+1.  *more realistic data with crop and other parameters specified*- we acknowledge that the aim of the project is to introduce students to basic modelling and simulation, however, providing more details, data, and editable parameters to reflect the complexity of real world would definitely help us not be shocked when we step out of the class room
+2.  
 
 ## REFERENCES
