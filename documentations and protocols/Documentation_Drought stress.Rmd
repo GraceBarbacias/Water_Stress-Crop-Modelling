@@ -1,0 +1,106 @@
+---
+title: "Documentation (drought stress)"
+author: "Barbacias, Florido, Inkyin"
+date: "2023-06-07"
+output: html_document
+---
+
+# **PROTOCOL** 
+
+**DROUGHT STRESS**
+
+**LINTUL2-SLIM WATERSTRESS MODEL**
+
+**DATE:** 04.07.2023
+
+**SOFTWARE:** SIMPLACE and RStudio (for data processing)
+
+## **OBJECTIVE**
+
+Run a model with and without water stress. Compare the annual yields and try to compensate yield loss by irrigation. The yearly yields should always be **more than 90%** of the potential yearly yields.
+
+Calculate the **overall water use efficiency** (sum of yields divided by sum of irrigation amounts) and try to maximize it by varying amounts and irrigation dates. Consider only those simulations as valid, where the yearly yields are at least 90% of the potential ones.
+
+## **MODEL**
+
+The modeling framework SIMPLACE was used to run the crop model Lintul2 together with the soilwater model \"Slim\". Data and solution files were provided by the laboratory instructor. Soil parameters used were for typical sandy loam soil, and weather data id from NUTS2 region AT11 (Burgenland, Austria).
+
+Model is shown in Figure 1.
+
+![](images/Screenshot%202023-06-06%20at%2023.54.33.png)
+
+Figure 1. Waterstress model using Lintul2 and Slim in SIMPLACE framework.
+
+## **SOLUTIONS**
+
+·       NoWaterstress - to calculate the potential yield without water stress
+
+·       Waterstress - to calculate yield under water stress condition and irrigation on two days per year. Irrigation days and amount are the same for all years.
+
+·       WaterstressIrrigYearly - to calculate yield under water stress condition and irrigation on two days per year. Irrigation days and amount were chosen individually per year to maximize resource efficiency.
+
+## **BENCHMARK**
+
+No water stress condition was achieved through running the \'NoWaterStress\' solution. TranRf=1 as shown in Figure 2. Rain and irrigation chart is shown in Figure 3. Volumetric water content is shown in Figure 4. Root depth is shown in Figure 5, while LAI yearly is presented in Figure 6. Figures 7 and 8 show the annual storage biomass and sum of biomass above ground.
+
+Notably, the overall sum of biomass for storage organs is \_\_\_\_\_\_\_\_. And taking the 90% of this as our threshold, \_\_\_\_\_\_\_ will be the limiter for rejecting or accepting irrigation schedules from this point on.
+
+![](images/nostress_tranrf.png)
+
+Figure 2. TranRF for all years under no water stress condition.
+
+![](images/nostress_rain_irrig.png)
+
+Figure 3. Rain and irrigation in mm.
+
+![](images/nostress_vol_water.png)
+
+Figure 4. Volumetric water content in m3/m3
+
+![](images/nostress_rootdepth-01.png)
+
+Figure 5. Root depth in m.
+
+![](images/nostress_LAI.png)
+
+Figure 6. LAI in m2/m2.
+
+![](images/nostress_biomass.png)
+
+Figure 7. Biomass of Storage organs in g/m2.
+
+![](images/nostress_sumbiomass.png)
+
+Figure 8. Sum of Biomas fractions above ground in g/m2.
+
+## SIMULATIONS
+
+Simulations were done by adjusting the following parameters: water amount for irrigation [mm] on irrigation day 1 and/or day 2; and day of irrigation [DOY] for days 1 and/or 2.
+
+1.  Irrig
+2.  
+
+## DATA ANALYSIS USING R
+
+Rstudio was used to analyze the data outputs from the simulation runs and automate the process of choosing best settings based on the following parameters:
+
+90% of potential biomass:
+
+### Code
+
+```{r, eval=FALSE}
+
+
+```
+
+### Graphs
+
+## DECISION AND THEORY
+
+### On uniform irrigation schedule per year
+
+### On custom irrigation schedule per year
+
+## RECOMMENDATIONS
+
+## REFERENCES
